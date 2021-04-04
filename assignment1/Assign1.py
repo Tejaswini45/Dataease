@@ -51,6 +51,7 @@ parsql5.coalesce(1).write.format('csv').save("/tmp/output1/5.csv", header='true'
 
 parsql6=spark.sql("select City, SUM(CAST(regexp_replace(Amount_in_USD, '[^0-9]*', '') AS BIGINT)) total from ParquetTable  where City!='nan' group by City order by total desc")
 parsql6.show()
+parsql6.coalesce(1).write.format('csv').save("/tmp/output1/6.csv", header='true')
 
 #parsql7=spark.sql("select MAX(mycount) from (select COUNT(Startup_Name) mycount from  ParquetTable where SubVertical!='nan' group by SubVerticaL)")
 #parsql7.show()
